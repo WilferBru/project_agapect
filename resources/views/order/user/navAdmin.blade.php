@@ -13,9 +13,6 @@
                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">Cliente</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="/">Inicio</a>
                             </li>
                             <li class="nav-item">
@@ -64,9 +61,12 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Funcionarios</a>
+                                <a class="nav-link" href="{{ route('officials') }}">Funcionarios</a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#registerAdmin">Crear nuevo funcionario</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="hearer_icon d-flex align-items-center">
@@ -77,6 +77,14 @@
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <li><a class="dropdown-item" href="#">Perfil</a></li>
                                 <li><a class="dropdown-item" href="#">Configuración</a></li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button class="dropdown-item" type="submit">
+                                           salir
+                                        </button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -94,3 +102,4 @@
         </div>
     </div>
 </header>
+@include('user.registerAdmin')

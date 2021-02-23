@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -15,7 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        $product = Product::all();
+        return view('user.home', compact('product'));
     }
 
     public function view()
@@ -24,7 +26,7 @@ class AdminController extends Controller
         $user = User::select("id", "name", "email", "address", "phone", "created_at")
             ->where('rol','=','user_admin')
             ->get();
-        return view('admin.tableOfficials', compact('user') );
+        return view('user.tableOfficials', compact('user') );
     }
 
     /**

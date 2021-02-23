@@ -2,7 +2,7 @@
 @section('title')
 Funcionarios
 @endsection
-@section('content')
+@section('contentAdmin')
  <script type="text/javascript">
         function Confirmdelete(){
             var respuesta = confirm('¿Estas seguro de que quieres eliminar este funcionario?');
@@ -42,7 +42,7 @@ Funcionarios
                             <td><b style="color: black;">{{ $fact->phone }}</b></td>
                             <td><b style="color: black;">{{ $fact->created_at->diffForHumans() }}</b></td>
                             <td>
-                                <form action="{{ route('destroy.admin', $fact->id) }}" method="post">
+                                <form action="{{ route('destroy.user', $fact->id) }}" method="post">
                                   @csrf @method('DELETE')
                                     <button onclick='return Confirmdelete()' title="Borrar" class="btn btn-danger btn-circle" ><i class="fas fa-trash"></i></button>
                                 </form>

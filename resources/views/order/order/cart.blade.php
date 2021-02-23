@@ -1,0 +1,67 @@
+@extends('layouts.guest')
+
+@section('content')
+    <!-- breadcrumb part start-->
+    <section class="breadcrumb_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <h2>Lista del Carrito</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb part end-->
+
+    <!--================Cart Area =================-->
+    <section class="cart_area section_padding">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($order as $product)
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="{{$product->image}}" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>{{$product->name}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn_1"><i class="fas fa-search-plus"></i>&nbsp;Observar</a>
+                                </td>
+                                <td>
+                                    <h5>{{$product->quantity}}</h5>
+                                </td>
+                                <td>
+                                    <h5>$ {{number_format($product->total) }}</h5>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class="checkout_btn_inner float-right">
+                        <a class="btn_1" href="{{route('products')}}">Continuar comprando</a>
+                        <a class="btn_1 checkout_btn_1" href="{{ route('payment') }}">Proceder a Pagar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Cart Area =================-->
+@endsection

@@ -17,7 +17,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('product/products',compact ("products"));
+        return view('product.products',compact ("products"));
     }
 
     public function productList($id)
@@ -25,7 +25,7 @@ class ProductsController extends Controller
         $products = Product::select('name', 'image', 'description', 'price')
             ->where('id', '=', $id)
             ->get();
-        return view('product/productslist', compact('products'));
+        return view('product.productslist', compact('products'));
     }
 
     public function catalogues($catalogue)

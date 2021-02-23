@@ -102,4 +102,4 @@
         </div>
     </div>
 </header>
-@include('admin.registerAdmin')
+@include('user.registerAdmin')
