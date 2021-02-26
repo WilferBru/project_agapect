@@ -1,6 +1,16 @@
 @extends('layouts.guest')
 
 @section('content')
+    <script type="text/javascript">
+        function Confirmdelete(){
+            var respuesta = confirm('¿Estas seguro de que quieres cancelar la compra?');
+            if (respuesta == true){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
     <!-- breadcrumb part start-->
     <section class="breadcrumb_part">
         <div class="container">
@@ -55,10 +65,14 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="checkout_btn_inner float-right">
-                        <a class="btn_1" href="{{route('products')}}">Continuar comprando</a>
-                        <a class="btn_1 checkout_btn_1" href="{{ route('payment') }}">Proceder a Pagar</a>
-                    </div>
+                    <form method="POST" action="{{ route('cancelPurchase', $product->user_id) }}">
+                        @csrf @method('DELETE')
+                        <div class="checkout_btn_inner float-right">
+                            <button type="submit" class="btn_1" onclick='return Confirmdelete()'>Cancelar compra</button>
+                            <a class="btn_1" href="{{route('products')}}">Continuar comprando</a>
+                            <a class="btn_1 checkout_btn_1" href="{{ route('payment') }}">Proceder a Pagar</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
