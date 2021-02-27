@@ -133,10 +133,10 @@ class ShoppingController extends Controller
     {
        /*$order = User::find($id);*/
 
-        $ordenes = DB::table('orders')->where('user_id', '=', $id)->get()->toArray();
-        foreach ($ordenes as $key){
-            $ordenes1 = Order::find($key->id);
-            $ordenes1->delete();
+        $records = DB::table('orders')->where('user_id', '=', $id)->get()->toArray();
+        foreach ($records as $fact){
+            $recordsCancel = Order::find($fact->id);
+            $recordsCancel->delete();
         }
 
 
