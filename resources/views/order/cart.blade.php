@@ -65,14 +65,19 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <form method="POST" action="{{ route('cancelPurchase', $product->user_id) }}">
-                        @csrf @method('DELETE')
-                        <div class="checkout_btn_inner float-right">
-                            <button type="submit" class="btn_1" onclick='return Confirmdelete()'>Cancelar compra</button>
-                            <a class="btn_1" href="{{route('products')}}">Continuar comprando</a>
-                            <a class="btn_1 checkout_btn_1" href="{{ route('payment') }}">Proceder a Pagar</a>
-                        </div>
-                    </form>
+                    @if(isset($product))
+                        <form method="POST" action="{{ route('cancelPurchase', $product->user_id) }}">
+                            @csrf @method('DELETE')
+                            <div class="checkout_btn_inner float-right">
+                                <button type="submit" class="btn_1" onclick='return Confirmdelete()'>Cancelar compra</button>
+                                <a class="btn_1" href="{{route('products')}}">Continuar comprando</a>
+                                <a class="btn_1 checkout_btn_1" href="{{ route('payment') }}">Proceder a Pagar</a>
+                            </div>
+                        </form>
+                    @else
+                        <h3>No has selecionado ningun Producto</h3>
+                    @endif
+
                 </div>
             </div>
         </div>

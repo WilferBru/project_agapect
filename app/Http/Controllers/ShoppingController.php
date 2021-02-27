@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -25,7 +27,7 @@ class ShoppingController extends Controller
             'name'       => 'required',
             'image'      => 'required',
             'quantity'   => 'required',
-            'price'   => 'required',
+            'price'      => 'required',
         ],
         [
             'quantity.required'   => 'El campo cantidad es obligatoria',
@@ -127,6 +129,23 @@ class ShoppingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function cancelPurchase($id)
+    {
+       /*$order = User::find($id);*/
+
+        $ordenes = DB::table('orders')->where('user_id', '=', $id)->get()->toArray();
+        foreach ($ordenes as $key){
+            $ordenes1 = Order::find($key->id);
+            $ordenes1->delete();
+        }
+
+
+
+
+
+        return back();
+    }
+
     public function destroy($id)
     {
         //
