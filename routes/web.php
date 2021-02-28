@@ -26,12 +26,13 @@ Route::delete('/Borrar-Funcionarios/{fact}', [AdminController::class,'destroy'])
 
 //Shopping actions
 
-
-
-Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart');
+Route::get('/cart', [ShoppingController::class, 'cart'])->name('cart')->middleware('auth');
 Route::post('/cart-product', [ShoppingController::class, 'productCart'])->name('cart-product');
 Route::get('/payment', [ShoppingController::class, 'payment'])->name('payment')->middleware('auth');
 Route::get('/confirmation', [ShoppingController::class, 'confirmation'])->name('confirmation')->middleware('auth');
 Route::get('/products', [ProductsController::class,'index'])->name('products');
 Route::get('/products/{id}', [ProductsController::class,'productList'])->name('productList');
 Route::get('/products/catalogues/{catalogue}',[ProductsController::class,'catalogues'])->name('catalogues');
+Route::delete('/Cancelar-Compra/{id}',[ShoppingController::class,'cancelPurchase'])->name('cancelPurchase');
+
+//Shopping actions
